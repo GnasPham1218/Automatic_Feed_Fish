@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng nhập máy cho cá ăn</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: "Roboto", sans-serif;
+      background: linear-gradient(135deg, #007bff, #00c4ff);
+      animation: fade 1s ease;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .login-box {
+      background: rgba(255,255,255,0.95);
+      padding: 26px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      width: 320px;
+      text-align: center;
+      backdrop-filter: blur(6px);
+      animation: popup .4s ease;
+    }
+
+    @keyframes popup {
+      from { opacity: 0; transform: scale(.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    h2 {
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      outline: none;
+      transition: .2s;
+    }
+
+    input:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 5px rgba(0,123,255,.4);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 500;
+      margin-top: 4px;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #0067d6;
+      box-shadow: 0 0 8px rgba(0,123,255,.4);
+      transform: translateY(-2px);
+    }
+
+    button:active {
+      transform: scale(.97);
+    }
+
+    .error {
+      color: #dc3545;
+      font-size: 13px;
+      margin-top: 8px;
+      height: 18px;
+      animation: shake .3s ease;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      40% { transform: translateX(-3px); }
+      70% { transform: translateX(3px); }
+      100% { transform: translateX(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-box">
+    <h2>Đăng nhập</h2>
+    <input id="user" type="text" placeholder="Username">
+    <input id="pass" type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <div class="error" id="msg"></div>
+  </div>
+
+  <script>
+    const CORRECT_USER = "admin";
+    const CORRECT_PASS = "sang123A@";
+
+    function login() {
+      const u = document.getElementById("user").value;
+      const p = document.getElementById("pass").value;
+
+      if (u === CORRECT_USER && p === CORRECT_PASS) {
+        localStorage.setItem("fish_auth", "yes");
+        window.location.href = "index.html";
+      } else {
+        document.getElementById("msg").textContent = "Sai tài khoản hoặc mật khẩu!";
+      }
+    }
+  </script>
+
+</body>
+</html>

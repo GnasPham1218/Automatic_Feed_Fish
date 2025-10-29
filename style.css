@@ -1,0 +1,273 @@
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #f0f8ff;
+  --text-color: #333;
+  --bg-color: #f4f7fc;
+  --card-bg: #ffffff;
+  --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --success-color: #28a745;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+}
+
+header {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1,
+h2 {
+  margin: 0;
+}
+h2 {
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--secondary-color);
+  padding-bottom: 10px;
+}
+
+#connection-status {
+  font-weight: 500;
+  padding: 5px 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Control Panel */
+.control-panel #feed-now-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.2em;
+  font-weight: 700;
+  color: white;
+  background-color: var(--success-color);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background-color 0.2s;
+}
+.control-panel #feed-now-btn:hover {
+  background-color: #218838;
+}
+
+.control-group {
+  margin-top: 20px;
+}
+.control-group input[type="number"] {
+  width: 60px;
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+/* Status Panel */
+.status-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.1em;
+  padding: 10px 0;
+}
+.status-item span {
+  font-weight: 700;
+  font-size: 1.5em;
+}
+#food-level.food-ok {
+  color: var(--success-color);
+}
+#food-level.food-low {
+  color: var(--warning-color);
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Temp Panel */
+.temp-panel .main-data {
+  font-size: 3.5em;
+  font-weight: 700;
+  text-align: center;
+  color: var(--primary-color);
+}
+
+/* Schedule Panel */
+#schedule-list {
+  list-style: none;
+  padding: 0;
+}
+#schedule-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: var(--secondary-color);
+  border-radius: 5px;
+  margin-bottom: 8px;
+}
+.add-schedule {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+.add-schedule input {
+  flex-grow: 1;
+}
+.add-schedule button,
+.delete-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: white;
+}
+.delete-btn {
+  background-color: var(--danger-color);
+}
+
+/* Chart Panel */
+.chart-panel {
+  grid-column: 1 / -1; /* Chiếm toàn bộ chiều rộng */
+}
+.chart-container {
+  position: relative; /* Bắt buộc cho Chart.js responsive */
+  height: 300px; /* <-- ĐẶT CHIỀU CAO CỐ ĐỊNH Ở ĐÂY */
+  width: 100%; /* Chiều rộng có thể linh hoạt */
+}
+
+/* Toggle Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+}
+input:checked + .slider {
+  background-color: var(--primary-color);
+}
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+.slider.round {
+  border-radius: 34px;
+}
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* Range Slider */
+#feed-amount-slider {
+  width: 100%;
+}
+#slider-value {
+  display: block;
+  text-align: center;
+  font-weight: 500;
+  margin-top: 5px;
+}
+#refill-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.1em;
+  font-weight: 700;
+  color: white;
+  background-color: var(--warning-color);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: background-color 0.2s, transform 0.2s;
+  margin-top: 10px;
+}
+
+#refill-btn:hover {
+  background-color: #e0a800;
+  transform: translateY(-4px);
+}
+
+#refill-btn:active {
+  transform: scale(0.97);
+}
+.logout {
+  padding: 8px 16px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.2s ease;
+  margin-left: auto; /* đẩy sang phải */
+}
+
+.logout:hover {
+  background: #b52d3a;
+  transform: scale(1.05);
+  box-shadow: 0 0 8px rgba(220, 53, 69, 0.5);
+}
+
+.logout:active {
+  transform: scale(0.96);
+}
